@@ -11,7 +11,7 @@ class TestConfig < Minitest::Test
         config.timeout = 10
       end
       b = Bitly.client
-      assert_equal Bitly::V3::Client, b.class
+      assert_equal Bitly::Client, b.class
     end
 
     should "create a new bitly v2 client through initializer" do

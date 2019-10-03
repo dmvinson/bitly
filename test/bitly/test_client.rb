@@ -28,13 +28,13 @@ class TestClient < Minitest::Test
     end
 
     should "create a proper OAuth2 authorization url" do
-      client = Bitly::V3::OAuth.new('CLIENT_ID', 'CLIENT_SECRET')
+      client = Bitly::OAuth.new('CLIENT_ID', 'CLIENT_SECRET')
       url = client.authorize_url('http://www.example.com/oauth_callback')
       assert_equal "https://bitly.com/oauth/authorize?client_id=CLIENT_ID&redirect_uri=http%3A%2F%2Fwww.example.com%2Foauth_callback&response_type=code", url
     end
 
     should "create a proper OAuth2 authorization url with a state parameter" do
-      client = Bitly::V3::OAuth.new('CLIENT_ID', 'CLIENT_SECRET')
+      client = Bitly::OAuth.new('CLIENT_ID', 'CLIENT_SECRET')
       url = client.authorize_url('http://www.example.com/oauth_callback', 'some_state')
       assert_equal "https://bitly.com/oauth/authorize?client_id=CLIENT_ID&redirect_uri=http%3A%2F%2Fwww.example.com%2Foauth_callback&response_type=code&state=some_state", url
     end
@@ -53,7 +53,7 @@ class TestClient < Minitest::Test
       should "set the api version to 3" do
         Bitly.use_api_version_3
         assert_equal Bitly.api_version, 3
-        assert_kind_of Bitly::V3::Client, Bitly.client
+        assert_kind_of Bitly::Client, Bitly.client
       end
     end
   end

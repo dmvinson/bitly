@@ -34,7 +34,7 @@ module Bitly
       args = args.merge({:login => @login, :apiKey => @api_key, :version => API_VERSION})
       url = URI.join(API_URL,resource)
       long_urls = args.delete(:long_urls)
-      url.query = args.map { |k,v| "%s=%s" % [CGI.escape(k.to_s), CGI.escape(v.to_s)] }.join("&")
+      url.query = args.map { |k,v| "%s=%s" % [CGI.escape(k.to_s), CGI.scape(v.to_s)] }.join("&")
       url.query << "&" + long_urls.map { |long_url| "longUrl=#{CGI.escape(long_url)}" }.join("&") unless long_urls.nil?
       url
     end
